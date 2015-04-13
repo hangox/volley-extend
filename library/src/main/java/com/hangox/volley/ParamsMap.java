@@ -1,6 +1,7 @@
 package com.hangox.volley;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class ParamsMap  {
      * @param values
      */
     public static void addDefaultParams(String key,Object values){
-        DEFAULT_PARAMS.put(key,values.toString());
+        DEFAULT_PARAMS.put(key, values.toString());
     }
 
     /**
@@ -124,10 +125,26 @@ public class ParamsMap  {
         return this;
     }
 
+    /**
+     * 按照key value 的
+     * @param key_value
+     */
     public void putAll(Object... key_value){
         if(key_value.length % 2 != 0 ) return;
         for(int i = 0 ;i < key_value.length ; i += 2)
             put(key_value[i].toString(),key_value[i+1].toString());
     }
 
+    @Override
+    public String toString() {
+        Iterator<Map.Entry<String,String>> iterator= mParams.entrySet().iterator();
+        StringBuilder stringBuilder = new StringBuilder();
+        while (iterator.hasNext()){
+            Map.Entry<String,String> entry =  iterator.next();
+            stringBuilder.append(entry.getKey()).append("=").append(entry.getValue())
+                    .append("&");
+        }
+        stringBuilder.delete(stringBuilder.length() - 1,stringBuilder.length());
+        return stringBuilder.toString();
+    }
 }
