@@ -15,48 +15,8 @@ import java.util.Map;
  */
 public class ParamsMap  {
 
-
     private Map<String,String> mParams = new HashMap<>();
 
-    private static Map<String,String> DEFAULT_PARAMS = new HashMap<>();
-
-    public ParamsMap() {
-        this(false);
-    }
-
-    public ParamsMap(boolean haveDefault) {
-        if(haveDefault) mParams.putAll(DEFAULT_PARAMS);
-    }
-
-
-    public static ParamsMap getHasDefaultParams(){
-        return new ParamsMap(true);
-    }
-
-
-    /**
-     * 添加默认参数
-     * @param key
-     * @param values
-     */
-    public static void addDefaultParams(String key,Object values){
-        DEFAULT_PARAMS.put(key, values.toString());
-    }
-
-    /**
-     * 移除默认参数
-     * @param key 关键字
-     */
-    public static void removeDefaultParams(String key){
-        DEFAULT_PARAMS.remove(key);
-    }
-
-    /**
-     * 清楚所有默认参数
-     */
-    public static void clearDefaultParams(){
-        DEFAULT_PARAMS.clear();
-    }
 
     /**
      * 添加一个集合
@@ -126,7 +86,7 @@ public class ParamsMap  {
     }
 
     /**
-     * 按照key value 的
+     * 按照key url 的
      * @param key_value
      */
     public void putAll(Object... key_value){

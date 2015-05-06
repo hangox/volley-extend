@@ -7,6 +7,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.hangox.volley.http.RequestManager;
+import com.hangox.volley.request.GsonRequest;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -118,7 +120,7 @@ public class NetUtil {
         //打印请求
         if (VolleyLog.DEBUG) logRequestUrl(url, params.getMap());
         //如果是get请求不会调用getParams
-        if(method == Request.Method.GET)
+        if(method == Request.Method.GET && params != null)
             url = makeGetUrl(url,params.getMap());
         Request request = null;
         switch (requestType) {

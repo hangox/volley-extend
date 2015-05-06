@@ -25,6 +25,6 @@ public interface CanJudge {
      * 获取结果信息
      * @return 结果信息
      */
-    String getMessage();
+    String getResultMessage();
 
 }

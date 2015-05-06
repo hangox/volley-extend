@@ -1,16 +1,16 @@
-package com.hangox.volley;
+package com.hangox.volley.request;
 
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.hangox.volley.CanJudge;
 import com.hangox.volley.error.JudgeError;
 
 import java.io.UnsupportedEncodingException;
@@ -22,8 +22,8 @@ import java.io.UnsupportedEncodingException;
  * Time 下午5:17
  * 新的GsonRequest,结合了判断
  */
-public class GsonRequest2<T extends CanJudged> extends Request<T>{
-    public static final String TAG = GsonRequest2.class.getName();
+public class NGsonRequest<T extends CanJudge> extends RequestEx<T>{
+    public static final String TAG = NGsonRequest.class.getName();
 
     private Gson mGson = new Gson();
 
@@ -45,7 +45,7 @@ public class GsonRequest2<T extends CanJudged> extends Request<T>{
      * @param error 错误回调
      * @param completedListener 完成回调
      */
-    public GsonRequest2(int method,
+    public NGsonRequest(int method,
                         String url,
                         Class<T> objectClass,
                         Response.Listener<T> listener,
@@ -67,7 +67,7 @@ public class GsonRequest2<T extends CanJudged> extends Request<T>{
                 return Response.success(mGson.fromJson(json, mClass),
                         HttpHeaderParser.parseCacheHeaders(response));
             }else{
-                return Response.error(new JudgeError(t.getMessage(),t.getResultCode()));
+                return Response.error(new JudgeError(t.getResultMessage(),t.getResultCode()));
             }
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));

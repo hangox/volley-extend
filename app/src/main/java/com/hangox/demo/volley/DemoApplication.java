@@ -2,7 +2,7 @@ package com.hangox.demo.volley;
 
 import android.app.Application;
 
-import com.hangox.volley.RequestManager;
+import com.hangox.volley.http.RequestManager;
 
 /**
  * Created With Android Studio
@@ -16,6 +16,6 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //初始化请求管理器
-        RequestManager.init(this);
+        RequestManager.init(this,"https://api.weibo.com");
     }
 }
