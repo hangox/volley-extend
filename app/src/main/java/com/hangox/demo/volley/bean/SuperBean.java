@@ -1,7 +1,7 @@
 package com.hangox.demo.volley.bean;
 
 import com.google.gson.annotations.SerializedName;
-import com.hangox.volley.CanJudge;
+import com.hangox.volley.Judgeable;
 
 /**
  * Created With Android Studio
@@ -10,7 +10,7 @@ import com.hangox.volley.CanJudge;
  * Time 上午10:59
  * 所有外城访问的父类
  */
-public class SuperBean implements CanJudge {
+public class SuperBean implements Judgeable {
     public String error;
     @SerializedName("error_code")
     public int errorCode;

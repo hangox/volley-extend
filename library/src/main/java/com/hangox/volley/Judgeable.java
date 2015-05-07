@@ -7,7 +7,7 @@ package com.hangox.volley;
  * Time 下午5:22
  * 是否可以判断的
  */
-public interface CanJudge {
+public interface Judgeable {
 
     /**
      * 判断是否成功

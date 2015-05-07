@@ -9,10 +9,10 @@ import com.android.volley.VolleyError;
  * Time 上午10:34
  * 业务上的错误
  */
-public class JudgeError extends VolleyError {
+public class JudgeableError extends VolleyError {
     private int mResultCode = 0;
 
-    public JudgeError(String message, int resultCode) {
+    public JudgeableError(String message, int resultCode) {
         super(message);
         mResultCode = resultCode;
     }

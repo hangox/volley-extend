@@ -10,8 +10,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.hangox.volley.CanJudge;
-import com.hangox.volley.error.JudgeError;
+import com.hangox.volley.Judgeable;
+import com.hangox.volley.error.JudgeableError;
 
 import java.io.UnsupportedEncodingException;
 
@@ -22,7 +22,7 @@ import java.io.UnsupportedEncodingException;
  * Time 下午5:17
  * 新的GsonRequest,结合了判断
  */
-public class NGsonRequest<T extends CanJudge> extends RequestEx<T>{
+public class NGsonRequest<T extends Judgeable> extends RequestEx<T>{
     public static final String TAG = NGsonRequest.class.getName();
 
     private Gson mGson = new Gson();
@@ -67,7 +67,7 @@ public class NGsonRequest<T extends CanJudge> extends RequestEx<T>{
                 return Response.success(mGson.fromJson(json, mClass),
                         HttpHeaderParser.parseCacheHeaders(response));
             }else{
-                return Response.error(new JudgeError(t.getResultMessage(),t.getResultCode()));
+                return Response.error(new JudgeableError(t.getResultMessage(),t.getResultCode()));
             }
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
